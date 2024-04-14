@@ -24,14 +24,23 @@ mongoose.connection.on("disconnected",()=>
     console.log("mongodb disconnected!")
 })
 
-app.use(express.json())
+
 //midlervere
+app.use((req,res,next)=>{
+    console.log("hi im a middlevere")
+    next()
+ })
+ 
+ app.use(express.json())
+
 app.use("/api/auth",authRoute);
 app.use("/api/users",usersRoute);
 app.use("/api/hotels",hotelsRoute);
 app.use("/api/rooms",roomsRoute);
 
-app.use("/auth",authRoute);
+
+
+
 app.listen(8800,()=>{
     connect()
     console.log("connected to backend!")

@@ -61,14 +61,16 @@ router.get("/:id", async (req,res)=>{
     }
 
 });
-router.get("/", async (req,res)=>{  
+router.get("/", async (req,res,next)=>{
+    console.log("hi im a hotel router")  
+
     try{
        const hotels= await Hotel.find();
       res.status(200).json(hotels);
     }
     catch(err)
     {
-        // console.log(err)
+        console.log(err)
         res.status(500).json(err)
     }
 
